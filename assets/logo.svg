@@ -1,0 +1,7 @@
+<svg xmlns=".../LIBERTAX CMS/assets/LibertaX CMS.png" width="160" height="40">
+  <text x="0" y="30" font-family="Poppins" font-size="28" fill="#264653">
+    Liberta
+    <tspan fill="#2A9D8F">X</tspan>
+    <tspan font-size="18" x="88" y="30">CMS</tspan>
+  </text>
+</svg>

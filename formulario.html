@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulário de Contato | Libertax CMS</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+    }
+
+    header {
+      background-color: #007bff;
+      padding: 20px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2em;
+    }
+
+    #formContainer {
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      transition: all 0.5s ease-in-out;
+      height: 280px;
+      overflow: hidden;
+    }
+
+    #formContainer.expanded {
+      height: 950px;
+    }
+
+    #formContainer.shrinked {
+      height: 200px;
+      opacity: 0.95;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    #resetBtn {
+      display: none;
+      margin: 20px auto;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      background-color: #007bff;
+      color: white;
+      cursor: pointer;
+      text-align: center;
+      transition: background-color 0.3s ease;
+    }
+
+    #resetBtn:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Fale Conosco | Libertax CMS</h1>
+    <p>Envie sua mensagem usando o formulário abaixo</p>
+  </header>
+
+  <section id="formContainer">
+    <iframe 
+      src="https://docs.google.com/forms/d/e/1FAIpQLSdWm1QzOK9bchGNyjhS1aH_MWYCP0lRDm3L37dwsHG_KlZm5w/viewform?embedded=true" 
+      allow="camera; microphone">
+      Carregando…
+    </iframe>
+  </section>
+
+  <div style="text-align: center;">
+    <button id="resetBtn">Enviar outro formulário</button>
+  </div>
+
+  <script>
+    const container = document.getElementById("formContainer");
+    const resetBtn = document.getElementById("resetBtn");
+    let hasExpanded = false;
+
+    // Detecta interações no iframe
+    setInterval(() => {
+      if (document.activeElement.tagName === "IFRAME" && !hasExpanded) {
+        container.classList.add("expanded");
+        hasExpanded = true;
+      }
+    }, 500);
+
+    // Simula envio e recolhe após 15 segundos
+    setTimeout(() => {
+      if (hasExpanded) {
+        container.classList.remove("expanded");
+        container.classList.add("shrinked");
+        resetBtn.style.display = "inline-block";
+      }
+    }, 15000);
+
+    // Reinicia o formulário
+    resetBtn.addEventListener("click", () => {
+      container.classList.remove("shrinked");
+      hasExpanded = false;
+      resetBtn.style.display = "none";
+      container.scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
